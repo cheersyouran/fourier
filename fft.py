@@ -16,9 +16,13 @@ yy = fft(y)                   # 快速傅里叶变换
 yreal = yy.real               # 获取实数部分
 yimag = yy.imag               # 获取虚数部分
 
-yf = abs(fft(y))                # 取绝对值
-yf1 = abs(fft(y))/len(x)        # 归一化处理
-yf2 = yf1[range(int(len(x)/2))]  # 由于对称性，只取一半区间
+# yf = abs(fft(y))                # 取绝对值
+# yf1 = abs(fft(y))/len(x)        # 归一化处理
+# yf2 = yf1[range(int(len(x)/2))]  # 由于对称性，只取一半区间
+
+yf = fft(y)
+yf1 = fft(y)/len(x)
+yf2 = yf1[range(int(len(x)/2))]
 
 xf = np.arange(len(y))        # 频率
 xf1 = xf
