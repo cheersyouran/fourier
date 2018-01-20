@@ -1,13 +1,12 @@
 import numpy as np
 from matplotlib import pyplot as plt
 import pandas as pd
-from codes.config import *
 import pywt
 
 beginDate = '2016-02-01'
 
-data = pd.read_csv(ZZ800_DATA)
-data = data[data['DATE'] >= beginDate].head(30)[['CLOSE','DATE']]
+data = pd.read_csv('/Users/Youran/Projects/stock-pattern-search/data/800_data.csv')
+data = data[data['DATE'] >= beginDate].head(300)[['CLOSE','DATE']]
 index_list = data['CLOSE'].values
 
 
@@ -34,7 +33,7 @@ def wt(index_list, data, wavefunc, level, m, n):
         #     else:
         #         coeff[i][j] = 0  # 低于阈值置零
 
-        if i not in [0] :
+        if i not in [1, 2, 3, 4] :
             for j in range(len(cD)):
                 coeff[i][j] = 0
 
@@ -47,4 +46,4 @@ def wt(index_list, data, wavefunc, level, m, n):
     print('finish')
 
 if __name__ == '__main__':
-    wt(index_list, data, 'db4', 2, 0, 2)
+    wt(index_list, data, 'db4', 4, 0, 4)
