@@ -1,5 +1,4 @@
 import numpy as np
-from matplotlib import pyplot as plt
 import pandas as pd
 import pywt
 
@@ -20,11 +19,12 @@ def wt(index_list, data, wavefunc, level, m, n):
     :return:
     '''
 
-    # 按 level 层分解，使用pywt包进行计算， cAn是尺度系数 cDn为小波系数
+    # cAn是尺度系数, cDn为小波系数, 详情看wavedec结果
     coeff = pywt.wavedec(index_list, wavefunc, mode='sym', level=level)
     sgn = lambda x: 1 if x > 0 else -1 if x < 0 else 0  # sgn函数
 
-    for i in range(m, n + 1):  # 尺度系数不需要处理
+    # 尺度系数不需要处理
+    for i in range(m, n + 1):
         cD = coeff[i]
         # for j in range(len(cD)):
         #     Tr = np.sqrt(2 * np.log(len(cD)))  # 计算阈值
